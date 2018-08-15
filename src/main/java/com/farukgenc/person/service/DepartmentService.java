@@ -24,16 +24,16 @@ public class DepartmentService {
 
 	public Department addDepartment(DepartmentResource departmentResource) {
 		Department department = new Department();
-		department.setId(departmentResource.getDepartmentId());
+		department.setId(departmentResource.getObjId());
 		department.setName(departmentResource.getDepartmentName());
 		return departmentRepository.save(department);
 	}
 
 	public Department updateDepartment(DepartmentResource departmentResource) throws DepartmentNotFoundException {
-		Optional<Department> tempDepartment = departmentRepository.findById(departmentResource.getDepartmentId());
+		Optional<Department> tempDepartment = departmentRepository.findById(departmentResource.getObjId());
 		if (tempDepartment.isPresent()) {
 			Department department = new Department();
-			department.setId(departmentResource.getDepartmentId());
+			department.setId(departmentResource.getObjId());
 			department.setName(departmentResource.getDepartmentName());
 			return departmentRepository.save(department);
 		}
@@ -62,7 +62,9 @@ public class DepartmentService {
 	}
 
 	public List<Department> getAllDepartment() {
-		return departmentRepository.findAll();
+		List<Department> departmentList = departmentRepository.findAllDeparment();
+		return departmentList;
+
 	}
 
 }

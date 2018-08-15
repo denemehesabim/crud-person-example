@@ -2,13 +2,32 @@ package com.farukgenc.person.web.resources;
 
 import java.util.List;
 
+import org.springframework.hateoas.Link;
 import org.springframework.hateoas.ResourceSupport;
 
 public class DepartmentResource extends ResourceSupport {
 
-	private Long departmentId;
+	private Link Id;
+
+	private Long objId;
+
+	public Long getObjId() {
+		return objId;
+	}
+
+	public void setObjId(Long objId) {
+		this.objId = objId;
+	}
 
 	private String departmentName;
+
+	public Link getId() {
+		return Id;
+	}
+
+	public void setId(Link id) {
+		Id = id;
+	}
 
 	List<PersonResource> personList;
 
@@ -18,14 +37,6 @@ public class DepartmentResource extends ResourceSupport {
 
 	public void setPersonList(List<PersonResource> personList) {
 		this.personList = personList;
-	}
-
-	public Long getDepartmentId() {
-		return departmentId;
-	}
-
-	public void setDepartmentId(Long departmentId) {
-		this.departmentId = departmentId;
 	}
 
 	public String getDepartmentName() {

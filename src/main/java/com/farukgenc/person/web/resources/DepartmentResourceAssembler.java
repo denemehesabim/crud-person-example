@@ -26,9 +26,14 @@ public class DepartmentResourceAssembler extends ResourceAssemblerSupport<Depart
 		List<PersonResource> personResources = new ArrayList<>();
 
 		DepartmentResource departmentResource = new DepartmentResource();
-		departmentResource.setDepartmentId(department.getId());
+		Link selfLink = ControllerLinkBuilder.linkTo(DepartmentController.class).slash(department.getId())
+				.withSelfRel();
+		
+		departmentResource.setId(selfLink);
 		departmentResource.setDepartmentName(department.getName());
 
+		Link selfLink2 = ControllerLinkBuilder.linkTo(PersonController.class).slash(department.getPersons()) .withRel("rel");
+		
 		if (!CollectionUtils.isEmpty(department.getPersons())) {
 			for (Person person : department.getPersons()) {
 				PersonResource personResource = new PersonResource();
@@ -39,9 +44,9 @@ public class DepartmentResourceAssembler extends ResourceAssemblerSupport<Depart
 				departmentResource.setPersonList(personResources);
 			}
 		}
-		
-		Link departmentLink = ControllerLinkBuilder.linkTo(DepartmentController.class)
-		.slash(department.getId()).withSelfRel();
+
+		Link departmentLink = ControllerLinkBuilder.linkTo(DepartmentController.class).slash(department.getId())
+				.withSelfRel();
 		departmentResource.add(departmentLink);
 		return departmentResource;
 	}

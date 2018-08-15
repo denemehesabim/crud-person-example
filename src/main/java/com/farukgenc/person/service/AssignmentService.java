@@ -63,7 +63,7 @@ public class AssignmentService {
 
 		}
 		departmentRepository.save(department.get());
-		departmentResource.setDepartmentId(department.get().getId());
+		departmentResource.setObjId(department.get().getId());
 		departmentResource.setDepartmentName(department.get().getName());
 		departmentResource.setPersonList(personResourceList);
 

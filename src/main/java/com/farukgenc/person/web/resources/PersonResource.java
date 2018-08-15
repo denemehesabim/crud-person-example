@@ -1,5 +1,6 @@
 package com.farukgenc.person.web.resources;
 
+import org.springframework.hateoas.Link;
 import org.springframework.hateoas.ResourceSupport;
 
 public class PersonResource extends ResourceSupport {
@@ -9,6 +10,16 @@ public class PersonResource extends ResourceSupport {
 	private String name;
 
 	private String surname;
+
+	private Link Id;
+
+	public Link getId() {
+		return Id;
+	}
+
+	public void setId(Link id) {
+		Id = id;
+	}
 
 	public Long getPersonId() {
 		return personId;
